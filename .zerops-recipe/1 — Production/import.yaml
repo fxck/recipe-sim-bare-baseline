@@ -1,0 +1,25 @@
+#zeropsPreprocessor=on
+
+project:
+  name: go-api-production
+  envVariables:
+    APP_SECRET: <@generateRandomString(<32>)>
+
+services:
+  - hostname: api
+    type: go@1
+    zeropsSetup: prod
+    buildFromGit: https://github.com/fxck/recipe-bare-baseline
+    enableSubdomainAccess: true
+    minContainers: 2
+    verticalAutoscaling:
+      minRam: 0.5
+      minFreeRamGB: 0.25
+
+  - hostname: db
+    type: postgresql@18
+    priority: 10
+    mode: NON_HA
+    verticalAutoscaling:
+      minRam: 0.5
+      minFreeRamGB: 0.25
