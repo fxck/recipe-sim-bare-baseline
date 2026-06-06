@@ -1,0 +1,27 @@
+# App build & run descriptor. The .zerops-recipe import yamls reference these
+# setups via `zeropsSetup: dev` / `zeropsSetup: prod`.
+zerops:
+  - setup: dev
+    build:
+      base: go@1
+      buildCommands:
+        - go build -o app ./...
+      deployFiles: ./app
+    run:
+      base: go@1
+      ports:
+        - port: 8080
+          httpSupport: true
+      start: ./app
+  - setup: prod
+    build:
+      base: go@1
+      buildCommands:
+        - go build -o app ./...
+      deployFiles: ./app
+    run:
+      base: go@1
+      ports:
+        - port: 8080
+          httpSupport: true
+      start: ./app
