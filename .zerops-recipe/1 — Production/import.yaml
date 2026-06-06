@@ -9,7 +9,7 @@ services:
   - hostname: api
     type: go@1
     zeropsSetup: prod
-    buildFromGit: https://github.com/fxck/recipe-bare-baseline
+    buildFromGit: https://github.com/fxck/recipe-sim-bare-baseline
     enableSubdomainAccess: true
     minContainers: 2
     verticalAutoscaling:
